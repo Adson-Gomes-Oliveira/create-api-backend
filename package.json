@@ -1,0 +1,25 @@
+{
+  "name": "create-api-backend",
+  "version": "1.0.0",
+  "description": "A package to fastly starts a REST API project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "create",
+    "api",
+    "rest",
+    "backend"
+  ],
+  "bin": {
+    "create-api-backend": "bin/index.js"
+  },
+  "author": "Adson Gomes Oliveira (devago)",
+  "license": "MIT",
+  "dependencies": {
+    "@supercharge/filesystem": "^2.3.0",
+    "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {}
+}
