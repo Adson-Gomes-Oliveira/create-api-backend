@@ -59,6 +59,12 @@ async function setupDependencies(projectName, condSequelize) {
     console.log(stderr);
   });
 
+  child_process.exec('git init', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
+    console.log(err);
+    console.log(stdout);
+    console.log(stderr);
+  });
+
   await fs.ensureFile(gitIgnorePath);
   await fs.ensureFile(dotenvPath);
   await fs.ensureFile(configNycPath);
@@ -67,7 +73,7 @@ async function setupDependencies(projectName, condSequelize) {
   await fs.writeFile(configNycPath, `module.exports = {
     include: ['**/**/*.js'],
     exclude: ['**/*.{test, spec}.js'],
-  };`)
+  };`);
 }
 
 module.exports = setupDependencies;
