@@ -1,8 +1,8 @@
 const fs = require('@supercharge/filesystem');
-async function createProjectPaths(projectName, sequelizeConditional) {
+async function createProjectPaths(projectName, condSequelize) {
   const paths = [];
 
-  if (sequelizeConditional) {
+  if (condSequelize) {
     paths.push( 
     `./${projectName}/src`,
     `./${projectName}/src/routes`,
@@ -12,6 +12,7 @@ async function createProjectPaths(projectName, sequelizeConditional) {
     `./${projectName}/src/controllers`,
     `./${projectName}/src/helpers`,
     `./${projectName}/src/middlewares`,
+    `./${projectName}/src/tests`,
     `./${projectName}/src/database`,
     );
   }
@@ -26,6 +27,7 @@ async function createProjectPaths(projectName, sequelizeConditional) {
     `./${projectName}/src/controllers`,
     `./${projectName}/src/helpers`,
     `./${projectName}/src/middlewares`,
+    `./${projectName}/src/tests`,
   );
 
   const promises = [];

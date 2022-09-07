@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "@supercharge/filesystem": "^2.3.0",
+    "colors": "^1.4.0",
     "readline-sync": "^1.4.10"
-  },
-  "devDependencies": {}
+  }
 }
