@@ -3,11 +3,12 @@ const fs = require('@supercharge/filesystem');
 const colors = require('colors');
 const { withoutSequelize, withSequelize } = require('./jsonModel');
 
-async function setupDependencies(projectName, condSequelize) {
+async function setupDependencies(projectName, condSequelize, typescript) {
   const packagePath = `./${projectName}/package.json`;
   const gitIgnorePath = `./${projectName}/.gitignore`;
   const dotenvPath = `./${projectName}/.env`;
-  const configNycPath = `./${projectName}/.nyc.config.js`;
+  const configNycPath = `./${projectName}/nyc.config.js`;
+  const tsConfig = `./${projectName}/tsconfig.json`;
   
   let waitMsg = ``;
 
@@ -22,8 +23,7 @@ async function setupDependencies(projectName, condSequelize) {
                                 With Sequelize ORM                                     
                                                                                        
     In the meantime follow me on github :D --> https://github.com/Adson-Gomes-Oliveira 
-                                                                                       
-    `;
+                                                                                       `;
   }
 
   if (!condSequelize) {
@@ -37,8 +37,7 @@ async function setupDependencies(projectName, condSequelize) {
                               Without Sequelize ORM                                    
                                                                                        
     In the meantime follow me on github :D --> https://github.com/Adson-Gomes-Oliveira 
-                                                                                       
-    `;
+                                                                                       `;
   }
 
   await fs.ensureFile(packagePath);
@@ -48,23 +47,35 @@ async function setupDependencies(projectName, condSequelize) {
   console.log(colors.bgBlue(waitMsg).bold);
 
   child_process.exec('npm install', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
-    console.log(err);
+    if (err) console.log(err);
     console.log(stdout);
     console.log(stderr);
   });
 
   child_process.exec('npm update', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
-    console.log(err);
+    if (err) console.log(err);
     console.log(stdout);
     console.log(stderr);
   });
+
+  if (typescript) {
+    child_process.exec('npm install -D typescript @types/node @tsconfig/node16 ts-node-dev', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
+      if (err) console.log(err);
+      console.log(stdout);
+      console.log(stderr);
+    });
+
+    await fs.ensureFile(tsConfig);
+    await fs.copy('./tsconfig.json', tsConfig);
+  }
 
   child_process.exec('git init', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
-    console.log(err);
+    if (err) console.log(err);
     console.log(stdout);
     console.log(stderr);
   });
 
+  
   await fs.ensureFile(gitIgnorePath);
   await fs.ensureFile(dotenvPath);
   await fs.ensureFile(configNycPath);
