@@ -1,4 +1,4 @@
-<center><h2> CodeLeap Network </h2></center>
+<center><h2> create-api-backend </h2></center>
 
 ### About the project
 <center>Welcome to create-api-backend Respository.</center>
@@ -32,10 +32,8 @@ npx create-api-backend some_project_name
 ```
 >Run the code above and replace the `some_project_name` with your project name.
 
->Use `npm start` to start a server of that application.
-
 </details>
 
 ---
 
-Template desenvolvido com carinho por [AG-Dev](https://www.linkedin.com/in/adson-gomes-oliveira/)
+Template developed with love by [AG-Dev](https://www.linkedin.com/in/adson-gomes-oliveira/)
