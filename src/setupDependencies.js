@@ -7,7 +7,8 @@ async function setupDependencies(projectName, condSequelize, typescript) {
   const packagePath = `./${projectName}/package.json`;
   const gitIgnorePath = `./${projectName}/.gitignore`;
   const dotenvPath = `./${projectName}/.env`;
-  const configNycPath = `./${projectName}/nyc.config.js`;
+  const appPath = `./${projectName}/src/app.ts`;
+  const serverPath = `./${projectName}/src/server.ts`;
   
   let waitMsg = ``;
 
@@ -80,13 +81,10 @@ async function setupDependencies(projectName, condSequelize, typescript) {
   
   await fs.ensureFile(gitIgnorePath);
   await fs.ensureFile(dotenvPath);
-  await fs.ensureFile(configNycPath);
-  await fs.writeFile(gitIgnorePath, `node_modules
-  .env`);
-  await fs.writeFile(configNycPath, `module.exports = {
-    include: ['**/**/*.js'],
-    exclude: ['**/*.{test, spec}.js'],
-  };`);
+  await fs.writeFile(gitIgnorePath, `
+  node_modules
+  .env
+  `);
 }
 
 module.exports = setupDependencies;

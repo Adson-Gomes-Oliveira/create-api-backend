@@ -21,7 +21,6 @@ const withSequelize = (projectName) => `{
     "chai": "^4.3.6",
     "mocha": "^10.0.0",
     "nodemon": "^2.0.19",
-    "nyc": "^15.1.0",
     "sinon": "^14.0.0"
   },
   "keywords": [],
@@ -50,7 +49,6 @@ const withoutSequelize = (projectName) => `{
     "chai": "^4.3.6",
     "mocha": "^10.0.0",
     "nodemon": "^2.0.19",
-    "nyc": "^15.1.0",
     "sinon": "^14.0.0"
   },
   "keywords": [],
