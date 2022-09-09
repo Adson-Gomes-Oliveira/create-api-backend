@@ -8,7 +8,6 @@ async function setupDependencies(projectName, condSequelize, typescript) {
   const gitIgnorePath = `./${projectName}/.gitignore`;
   const dotenvPath = `./${projectName}/.env`;
   const configNycPath = `./${projectName}/nyc.config.js`;
-  const tsConfig = `./${projectName}/tsconfig.json`;
   
   let waitMsg = ``;
 
@@ -65,8 +64,11 @@ async function setupDependencies(projectName, condSequelize, typescript) {
       console.log(stderr);
     });
 
-    await fs.ensureFile(tsConfig);
-    await fs.copy('./tsconfig.json', tsConfig);
+    child_process.exec('npx tsc --init', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
+      if (err) console.log(err);
+      console.log(stdout);
+      console.log(stderr);
+    });
   }
 
   child_process.exec('git init', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
