@@ -45,33 +45,33 @@ async function setupDependencies(projectName, condSequelize, typescript) {
     
   console.log(colors.bgBlue(waitMsg).bold);
 
-  child_process.exec('npm install', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
+  child_process.execSync('npm install', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
     if (err) console.log(err);
     console.log(stdout);
     console.log(stderr);
   });
 
-  child_process.exec('npm update', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
+  child_process.execSync('npm update', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
     if (err) console.log(err);
     console.log(stdout);
     console.log(stderr);
   });
 
   if (typescript) {
-    child_process.exec('npm install -D typescript @types/node @tsconfig/node16 ts-node-dev', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
+    child_process.execSync('npm install -D typescript @types/node @tsconfig/node16 ts-node-dev', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
       if (err) console.log(err);
       console.log(stdout);
       console.log(stderr);
     });
 
-    child_process.exec('npx tsc --init', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
+    child_process.execSync('npx tsc --init', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
       if (err) console.log(err);
       console.log(stdout);
       console.log(stderr);
     });
   }
 
-  child_process.exec('git init', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
+  child_process.execSync('git init', { cwd: `./${projectName}/` }, function(err, stdout, stderr) {
     if (err) console.log(err);
     console.log(stdout);
     console.log(stderr);
